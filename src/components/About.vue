@@ -51,7 +51,7 @@
                 class="text-decoration-none fw-lighter"
                 :class="isNightMode ? 'text-white' : 'text-dark'"
               >
-                linkedin.com/in/ajaychitambaran
+              Ajay Chitambaran
               </a>
             </li>
           </ul>

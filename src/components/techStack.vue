@@ -1,5 +1,5 @@
 <template>
-  <div class="rubiks-wrapper p-5">
+  <div class="rubiks-wrapper mt-5 d-block d-sm-none">
     <TransitionGroup tag="div" class="cube border" :name="currentAnimation">
       <div v-for="logo in logos" :key="logo.id" class="cell">
         <img :src="logo.src" alt="logo" />
