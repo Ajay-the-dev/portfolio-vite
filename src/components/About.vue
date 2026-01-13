@@ -55,7 +55,7 @@
               </a>
             </li>
           </ul>
-          <div class="d-flex gap-2 my-5">
+          <div class="d-flex gap-2 my-5 overflow-scroll">
             <span class="badge bg-dark border small-text">Vue.js</span>
             <span class="badge bg-dark border small-text">PHP</span>
             <span class="badge bg-dark border small-text">Full Stack</span>
