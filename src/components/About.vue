@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div class="row last-space">
     <div class="col-md-6 col-12" v-if="router.path === '/history'">
       <div class="mb-3"><span class="fs-2 fw-bold">History</span></div>
       <section>
@@ -56,10 +56,10 @@
             </li>
           </ul>
           <div class="d-flex gap-2 my-5">
-            <span class="badge bg-dark border">Vue.js</span>
-            <span class="badge bg-dark border">PHP</span>
-            <span class="badge bg-dark border">Full Stack</span>
-            <span class="badge bg-dark border">DevOps</span>
+            <span class="badge bg-dark border small-text">Vue.js</span>
+            <span class="badge bg-dark border small-text">PHP</span>
+            <span class="badge bg-dark border small-text">Full Stack</span>
+            <span class="badge bg-dark border small-text">DevOps</span>
           </div>
         </div>
       </div>
@@ -146,5 +146,9 @@ watch(isDarkMode, (newVal, oldVal) => {
   height: 11px;
   width: 11px;
   content: "";
+}
+
+.last-space {
+    margin-bottom: 7rem !important;
 }
 </style>

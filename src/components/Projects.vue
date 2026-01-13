@@ -2,8 +2,11 @@
   <div class="row">
     <div
       class="align-content-center border col-md-8 my-1 p-3 shadow-sm"
-      :class="isNightMode ? 'heartbeat' : 'heartbeat-black'"
-      v-for="project in projects"
+      :class="[
+              isNightMode ? 'heartbeat' : 'heartbeat-black',
+              projects.length === index + 1 ? 'last-space' : ''
+            ]"
+      v-for="project,index in projects"
       @click="showDiv(project)"
     >
       <span class="fs-5 fw-normal text-left">
@@ -127,5 +130,9 @@ const showDiv = (project) => {
   70% {
     transform: scale(1);
   }
+}
+
+.last-space {
+    margin-bottom: 7rem !important;
 }
 </style>

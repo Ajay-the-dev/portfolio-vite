@@ -35,7 +35,7 @@ watch(isDarkMode, (val) => {
 
 <style>
 #app {
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 body {

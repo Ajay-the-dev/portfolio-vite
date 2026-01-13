@@ -14,10 +14,13 @@
     <!-- mobile view -->
     <div
       class="align-content-center border col-md-3 col-12 m-2 text-center shadow row d-block d-sm-none"
-      :class="isNightMode ? 'heartbeat' : 'heartbeat-black'"
-      v-for="service in services"
+      :class="[
+              isNightMode ? 'heartbeat' : 'heartbeat-black',
+              services.length === index + 1 ? 'last-space' : ''
+            ]"
+      v-for="service,index in services"
     >
-      <div class="">
+      <div>
         <div class="col p-3">
           <i :title="service.desc" :class="`bi bi-${service.logo} p-2`"></i>
           <span>{{ service.name }}</span>
@@ -108,5 +111,9 @@ watch(isDarkMode, (newVal, oldVal) => {
   70% {
     transform: scale(1);
   }
+}
+
+.last-space {
+    margin-bottom: 7rem !important;
 }
 </style>

@@ -17,7 +17,6 @@
   <a href="https://github.com/Ajay-the-dev" target="_blank">
     <i class="mx-2 bi bi-github text-secondary"></i>
   </a>
-  <br />
   <Cube />
 </template>
 <script setup>
