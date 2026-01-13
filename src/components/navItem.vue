@@ -49,7 +49,7 @@ const getBootstrap = () => {
 </script>
 <style>
 .spotter:hover {
-  background-color: #eeeeee;
+  background-color: #ececec;
   color: black;
   cursor: pointer;
   transparency: 50%;
@@ -57,7 +57,7 @@ const getBootstrap = () => {
 }
 
 .n-spotter:hover {
-  background-color: black;
+  background-color: rgb(55, 55, 55);
   color: #eeeeee;
   cursor: pointer;
   transparency: 50%;
