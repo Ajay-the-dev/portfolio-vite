@@ -31,7 +31,7 @@
             </li>
             <li class="mb-2">
               <i class="bi bi-telephone me-2"></i>
-              +91 9746517722
+              +971 562948474
             </li>
             <li class="mb-2">
               <i class="bi bi-envelope me-2"></i>
@@ -51,7 +51,7 @@
                 class="text-decoration-none fw-lighter"
                 :class="isNightMode ? 'text-white' : 'text-dark'"
               >
-              Ajay Chitambaran
+                Ajay Chitambaran
               </a>
             </li>
           </ul>
@@ -149,6 +149,6 @@ watch(isDarkMode, (newVal, oldVal) => {
 }
 
 .last-space {
-    margin-bottom: 7rem !important;
+  margin-bottom: 7rem !important;
 }
 </style>
