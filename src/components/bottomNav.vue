@@ -1,7 +1,7 @@
 <template>
   <nav
     class="d-block d-md-none"
-    :class="isDarkMode ? 'bottom-nav' : 'bottom-nav-light'"
+    :class="isDarkMode ? 'bottom-nav' : 'bottom-nav-light bg-white'"
   >
     <div
       class="row centrify text-center"
