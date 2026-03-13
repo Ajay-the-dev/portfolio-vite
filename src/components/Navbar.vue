@@ -50,7 +50,12 @@ const isNightMode = ref(true);
 
 onMounted(() => {
   isNightMode.value = store.getLightMode();
-  // console.log("updated with :" + isNightMode.value);
+  setTimeout(() => {
+    toggleDays(); // Switch it ON
+    setTimeout(() => {
+      toggleDays(); // Switch it OFF after another 100ms
+    }, 100);
+  }, 100);
 });
 
 const toggleDays = () => {
