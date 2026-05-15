@@ -6,7 +6,7 @@
               isNightMode ? 'heartbeat' : 'heartbeat-black',
               projects.length === index + 1 ? 'last-space' : ''
             ]"
-      v-for="project,index in projects"
+      v-for="project,index in sortedProjects"
       @click="showDiv(project)"
     >
       <span class="fs-5 fw-normal text-left">
@@ -27,7 +27,7 @@
   </div>
 </template>
 <script setup>
-import { ref, onMounted, watch } from "vue";
+import { ref, onMounted, watch, computed } from "vue";
 import { displayStore } from "../stores/displayStore.js";
 import { storeToRefs } from "pinia";
 
@@ -44,6 +44,7 @@ const projects = ref([
     desc: "Spam Detection in Email using Content Analysis – A smart filtering system that identifies spam emails by scanning their content, including text patterns, embedded links, and images. This approach goes beyond traditional filters by analyzing the body of the email for hidden or deceptive content, ensuring more accurate detection and better email security.",
     link: "",
     show: false,
+    order:6
   },
   {
     id: 2,
@@ -51,6 +52,7 @@ const projects = ref([
     desc: "Gluco is a user-friendly mobile application designed to help individuals track and manage their blood glucose levels effectively. The app allows users to log their glucose readings and receive personalized health suggestions based on their data trends and lifestyle inputs",
     link: "",
     show: false,
+    order:7
   },
   {
     id: 3,
@@ -58,6 +60,7 @@ const projects = ref([
     desc: "Linways AMS is a cloud-based Academic Management System designed to streamline and automate the academic workflows of educational institutions. The platform enables administrators, faculty, and students to efficiently manage everything from curriculum planning and assessments to attendance tracking and reporting — all in one centralized system.",
     link: "",
     show: false,
+    order:4
   },
   {
     id: 4,
@@ -65,6 +68,7 @@ const projects = ref([
     desc: "A centralized system to manage users, roles, and permissions efficiently, ensuring secure access control and streamlined administration across the application",
     link: "https://github.com/Ajay-the-dev/user-management-by-laravel-vue",
     show: false,
+    order:2
   },
   {
     id: 5,
@@ -72,6 +76,7 @@ const projects = ref([
     desc: "A data extraction system designed to parse and process official Olympics Data Format (ODF) XML files, converting complex event, athlete, and results data into structured and analyzable datasets.",
     link: "https://github.com/Ajay-the-dev/olympics-data-viewer",
     show: false,
+    order:3
   },
   {
     id: 6,
@@ -79,8 +84,22 @@ const projects = ref([
     desc: "Designed and developed a personal portfolio website showcasing full-stack projects, interactive UI components, 3D experiences, and optimized performance using Vue.js and modern web technologies",
     link: "https://github.com/Ajay-the-dev/portfolio",
     show: false,
+    order:5
   },
+  {
+    id:7,
+    name: "Feemo",
+    desc: "Feemo is the smart, stress-free fee collection app designed for modern educational institutions. Simplify invoicing, automate reminders, and offer payers secure, one-click payments—all from a single, intuitive dashboard. Say goodbye to chasing paperwork and hello to effortless finance management.",
+    link: "https://user-management-by-laravel-vue-production.up.railway.app/",
+    show: false,
+    order:1
+  }
 ]);
+
+const sortedProjects = computed(()=>{
+    return projects.value.sort((a, b) => a.order - b.order);
+})
+
 
 onMounted(() => {
   isNightMode.value = store.getLightMode();
