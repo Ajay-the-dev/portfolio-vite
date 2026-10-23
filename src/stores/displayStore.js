@@ -1,28 +1,22 @@
 import { defineStore } from "pinia";
+import { useDark, useToggle } from "@vueuse/core";
 
-export const displayStore = defineStore("display", {
-  state: () => ({
-    isDarkMode: true,
-  }),
+export const displayStore = defineStore("display", () => {
+  // Single source of truth: persisted to localStorage and reflected on <html>
+  // as data-bs-theme, so Bootstrap 5.3 components follow the theme too.
+  const isDarkMode = useDark({
+    selector: "html",
+    attribute: "data-bs-theme",
+    valueDark: "dark",
+    valueLight: "light",
+    initialValue: "dark",
+  });
 
-  actions: {
-    toggleLightMode() {
-      this.isDarkMode = !this.isDarkMode;
-    },
+  const toggleLightMode = useToggle(isDarkMode);
 
-    setLightMode(value) {
-      this.isDarkMode = value;
-    },
+  function setLightMode(value) {
+    isDarkMode.value = value;
+  }
 
-    isAM() {
-      const hour = new Date().getHours();
-      if (hour >= 6 && hour < 18) {
-        this.setLightMode(false);
-      }
-    },
-
-    getLightMode() {
-      return this.isDarkMode;
-    },
-  },
+  return { isDarkMode, toggleLightMode, setLightMode };
 });

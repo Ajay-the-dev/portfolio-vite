@@ -73,7 +73,7 @@ const services = ref([
 ]);
 
 onMounted(() => {
-  isNightMode.value = store.getLightMode();
+  isNightMode.value = store.isDarkMode;
 });
 
 watch(isDarkMode, (newVal, oldVal) => {

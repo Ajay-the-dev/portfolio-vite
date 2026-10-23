@@ -16,7 +16,6 @@
     <div class="col-md-6 col-12" v-if="router.path === '/about'">
       <div
         class="border card rounded-4 shadow-sm"
-        :class="isNightMode ? 'bg-dark text-white' : ''"
       >
         <div class="card-body">
           <span class="card-title fw-bold mb-1 fs-3">Ajay Chitambaran</span>
@@ -38,7 +37,7 @@
               <a
                 href="mailto:ajaychitambaran@gmail.com"
                 class="text-decoration-none fw-lighter"
-                :class="isNightMode ? 'text-white' : 'text-dark'"
+                style="color: var(--text)"
               >
                 ajaychitambaran@gmail.com
               </a>
@@ -49,17 +48,17 @@
                 href="https://www.linkedin.com/in/ajaychitambaran/"
                 target="_blank"
                 class="text-decoration-none fw-lighter"
-                :class="isNightMode ? 'text-white' : 'text-dark'"
+                style="color: var(--text)"
               >
                 Ajay Chitambaran
               </a>
             </li>
           </ul>
           <div class="d-flex gap-2 my-5">
-            <span class="badge bg-dark border small-text">Vue.js</span>
-            <span class="badge bg-dark border small-text">PHP</span>
-            <span class="badge bg-dark border small-text">Full Stack</span>
-            <span class="badge bg-dark border small-text">DevOps</span>
+            <span class="badge about-tag small-text">Vue.js</span>
+            <span class="badge about-tag small-text">PHP</span>
+            <span class="badge about-tag small-text">Full Stack</span>
+            <span class="badge about-tag small-text">DevOps</span>
           </div>
         </div>
       </div>
@@ -115,7 +114,7 @@ const steps = ref([
 // };
 
 onMounted(() => {
-  isNightMode.value = store.getLightMode();
+  isNightMode.value = store.isDarkMode;
 });
 
 watch(isDarkMode, (newVal, oldVal) => {
@@ -124,7 +123,7 @@ watch(isDarkMode, (newVal, oldVal) => {
 </script>
 <style>
 .timeline {
-  border-left: 1px solid hsl(0, 0%, 90%);
+  border-left: 1px solid var(--line);
   position: relative;
   list-style: none;
 }
@@ -146,6 +145,19 @@ watch(isDarkMode, (newVal, oldVal) => {
   height: 11px;
   width: 11px;
   content: "";
+}
+
+.about-tag {
+  background: var(--surface-2);
+  color: var(--text);
+  border: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+
+.timeline .timeline-item:after {
+  background-color: var(--accent) !important;
 }
 
 .last-space {

@@ -1,71 +1,31 @@
 <template>
-  <div :class="isDarkMode ? 'bg-dark text-white' : 'bg-white text-dark'">
+  <div class="app-shell">
     <Navbar />
-    <Home />
+    <Main />
     <BottomNav />
   </div>
 </template>
 
 <script setup>
-import { watch } from "vue";
+import "./theme.css";
 import Navbar from "./components/Navbar.vue";
-import Home from "./components/Main.vue";
-import BottomNav from "./components/bottomNav.vue";
-
-import { displayStore } from "./stores/displayStore.js";
-import { storeToRefs } from "pinia";
-import { useDark } from "@vueuse/core";
-
-const store = displayStore();
-const { isDarkMode } = storeToRefs(store);
-
-// VueUse handles attribute automatically
-const isDark = useDark({
-  selector: "#app",
-  attribute: "color-scheme",
-  valueDark: "dark",
-  valueLight: "light",
-});
-
-// sync pinia → vueuse
-watch(isDarkMode, (val) => {
-  isDark.value = val;
-});
+import Main from "./components/Main.vue";
+import BottomNav from "./components/BottomNav.vue";
 </script>
 
 <style>
-#app {
-  /* overflow: hidden; */
-}
-
-body {
-  font-family: "Space Grotesk", sans-serif;
-}
-.text-white {
-  color: #ffffff !important;
-}
-
-.text-dark {
-  color: #212529 !important;
-}
-
-.bg-white {
-  background-color: #ffffff !important;
-}
-
-.bg-dark {
-  background-color: #212529 !important;
-}
-
-[color-scheme="dark"] {
-  background-color: #212529 !important;
-  color: #ffffff !important;
-  height: 100vh;
-}
-
-[color-scheme="light"] {
-  background-color: #ffffff !important;
-  color: #212529 !important;
-  height: 100vh;
+.app-shell {
+  min-height: 100dvh;
+  background-color: var(--bg);
+  /* faint concentric rings behind the hero, as in the reference */
+  background-image: repeating-radial-gradient(
+    circle at 50% 38%,
+    transparent 0 120px,
+    var(--ring) 120px 121px
+  );
+  background-attachment: fixed;
+  color: var(--text);
+  overflow-x: clip;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 </style>
