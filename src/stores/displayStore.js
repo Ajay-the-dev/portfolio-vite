@@ -3,9 +3,14 @@ import { defineStore } from "pinia";
 export const displayStore = defineStore("display", {
   state: () => ({
     isDarkMode: true,
+    matrixRain: true,
   }),
 
   actions: {
+    toggleRain() {
+      this.matrixRain = !this.matrixRain;
+    },
+
     toggleLightMode() {
       this.isDarkMode = !this.isDarkMode;
     },

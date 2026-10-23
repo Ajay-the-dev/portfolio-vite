@@ -1,4 +1,5 @@
 <template>
+  <MatrixRain />
   <div :class="isDarkMode ? 'bg-dark text-white' : 'bg-white text-dark'">
     <Navbar />
     <Home />
@@ -11,6 +12,7 @@ import { watch } from "vue";
 import Navbar from "./components/Navbar.vue";
 import Home from "./components/Main.vue";
 import BottomNav from "./components/bottomNav.vue";
+import MatrixRain from "./components/MatrixRain.vue";
 
 import { displayStore } from "./stores/displayStore.js";
 import { storeToRefs } from "pinia";
@@ -39,7 +41,7 @@ watch(isDarkMode, (val) => {
 }
 
 body {
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "Share Tech Mono", monospace;
 }
 .text-white {
   color: #ffffff !important;

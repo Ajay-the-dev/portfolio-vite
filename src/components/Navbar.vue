@@ -1,71 +1,28 @@
 <template>
   <div class="container p-2">
     <div class="row m-3">
-      <div class="col-6 fw-bold ps-4">Ajay Chitambaran</div>
-      <div class="col-6 text-end">
-        <div class="dropdown">
-          <button
-            hidden
-            :class="
-              isNightMode ? 'btn btn-dark dropdown-toggle border' : 'btn border'
-            "
-            type="button"
-            id="dropdownMenuButton1"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Home
-          </button>
-          <ul
-            class="dropdown-menu bg-dark"
-            aria-labelledby="dropdownMenuButton1"
-          >
-            <li class="bg-dark border">
-              <a class="dropdown-item text-white text-darker" href="#">Home</a>
-            </li>
-          </ul>
-          <button
-            :class="isNightMode ? 'mx-1 btn btn-dark border' : 'btn border'"
-            @click="toggleDays"
-          >
-            <i
-              class="bi bi-sun"
-              v-if="isNightMode"
-              title="Turn on Day mode"
-            ></i>
-            <i class="bi bi-moon" v-else title="Turn on Night mode"></i>
-          </button>
-        </div>
+      <div class="col-8 fw-bold ps-4">
+        &gt; Ajay Chitambaran<span class="matrix-cursor">_</span>
+      </div>
+      <div class="col-4 text-end">
+        <button
+          class="mx-1 btn border"
+          @click="store.toggleRain()"
+          :title="matrixRain ? 'Take the blue pill' : 'Take the red pill'"
+        >
+          <i
+            class="bi bi-capsule"
+            :style="{ color: matrixRain ? '#3d7bff' : '#ff2a2a' }"
+          ></i>
+        </button>
       </div>
     </div>
   </div>
 </template>
 <script setup>
-import { onMounted, ref, watch } from "vue";
 import { displayStore } from "../stores/displayStore.js";
+import { storeToRefs } from "pinia";
 
 const store = displayStore();
-
-const isNightMode = ref(true);
-
-onMounted(() => {
-  isNightMode.value = store.getLightMode();
-  setTimeout(() => {
-    toggleDays(); // Switch it ON
-    setTimeout(() => {
-      toggleDays(); // Switch it OFF after another 100ms
-    }, 100);
-  }, 100);
-});
-
-const toggleDays = () => {
-  isNightMode.value = !isNightMode.value;
-  store.toggleLightMode();
-};
+const { matrixRain } = storeToRefs(store);
 </script>
-
-<style>
-.text-darker:hover {
-  color: black;
-}
-</style>

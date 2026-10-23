@@ -1,0 +1,198 @@
+/* Matrix theme — overrides the Bootstrap classes used across the components */
+:root {
+  --m-green: #00ff41;
+  --m-mid: #00c832;
+  --m-dim: #008f11;
+  --m-deep: #003b00;
+  --m-bg: #000000;
+  --m-panel: rgba(0, 18, 4, 0.78);
+  --m-glow: 0 0 6px rgba(0, 255, 65, 0.6);
+}
+
+html,
+body {
+  background-color: var(--m-bg) !important;
+  color: var(--m-green);
+  font-family: "Share Tech Mono", "Courier New", monospace !important;
+}
+
+::selection {
+  background: var(--m-green);
+  color: #000;
+}
+
+/* Content sits above the rain canvas */
+#app,
+#app[color-scheme="dark"],
+#app[color-scheme="light"] {
+  background-color: transparent !important;
+  color: var(--m-green) !important;
+}
+
+#app > div {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+}
+
+.bg-dark {
+  background-color: transparent !important;
+}
+
+.bg-black {
+  background-color: #000 !important;
+}
+
+/* Active nav item */
+.bg-white {
+  background-color: var(--m-green) !important;
+}
+
+.text-dark {
+  color: #000 !important;
+}
+
+.text-white {
+  color: var(--m-green) !important;
+}
+
+.text-secondary,
+.text-muted {
+  color: var(--m-dim) !important;
+}
+
+a,
+a:hover {
+  color: var(--m-green);
+}
+
+a:hover {
+  text-shadow: var(--m-glow);
+}
+
+h1,
+.fs-2,
+.fs-3 {
+  text-shadow: var(--m-glow);
+}
+
+.border,
+.border-start {
+  border-color: var(--m-dim) !important;
+}
+
+/* Panels */
+.card,
+.heartbeat,
+.spotter,
+.container.border {
+  background-color: var(--m-panel) !important;
+  backdrop-filter: blur(2px);
+}
+
+.card {
+  border-radius: 0 !important;
+}
+
+.badge.bg-dark {
+  background-color: #000 !important;
+  color: var(--m-green);
+  border-color: var(--m-dim) !important;
+}
+
+/* Buttons */
+.btn,
+.btn-dark {
+  background-color: #000 !important;
+  color: var(--m-green) !important;
+  border: 1px solid var(--m-dim) !important;
+  border-radius: 0;
+}
+
+.btn:hover {
+  box-shadow: var(--m-glow);
+}
+
+/* Nav items */
+.spotter:hover {
+  background-color: var(--m-deep) !important;
+  color: var(--m-green);
+  box-shadow: var(--m-glow);
+}
+
+.spotter.bg-white {
+  background-color: var(--m-green) !important;
+  color: #000 !important;
+}
+
+.heartbeat:hover {
+  box-shadow: 0 0 8px rgba(0, 255, 65, 0.7);
+}
+
+/* Timeline */
+.timeline {
+  border-left-color: var(--m-dim);
+}
+
+.timeline .timeline-item:after {
+  background-color: var(--m-green);
+  box-shadow: var(--m-glow);
+}
+
+/* Mobile bottom nav */
+.bottom-nav {
+  background: #000;
+  border-top: 1px solid var(--m-dim);
+  z-index: 2;
+}
+
+.nav-item,
+.router-link-exact-active {
+  color: var(--m-green);
+}
+
+.router-link-exact-active > #logo {
+  border-bottom-color: var(--m-green);
+}
+
+/* Footer news ticker flash */
+@keyframes flashEffect {
+  0% {
+    background-color: transparent;
+  }
+  50% {
+    background-color: var(--m-deep);
+    box-shadow: 0 0 20px var(--m-green);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+/* Tech stack logos tinted green */
+.rubiks-wrapper .cell img {
+  filter: grayscale(100%) sepia(100%) hue-rotate(70deg) saturate(600%)
+    brightness(0.9);
+}
+
+/* Blinking terminal cursor */
+.matrix-cursor {
+  animation: matrix-blink 1s steps(1) infinite;
+}
+
+@keyframes matrix-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #000;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--m-dim);
+}

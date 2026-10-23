@@ -1,4 +1,7 @@
 <template>
+  <p class="fs-6 mb-4" aria-live="polite">
+    {{ typed }}<span class="matrix-cursor">█</span>
+  </p>
   <h1>
     <span class="fst-italic fw-light">I’m</span>
     <br />
@@ -20,5 +23,31 @@
   <Cube />
 </template>
 <script setup>
+import { ref, onMounted, onBeforeUnmount } from "vue";
 import Cube from "./techStack.vue";
+
+const lines = [
+  "Wake up, Neo...",
+  "The Matrix has you...",
+  "Follow the white rabbit.",
+  "Knock, knock.",
+];
+const typed = ref("");
+let timer = null;
+
+const typeLine = (lineIndex = 0, charIndex = 0) => {
+  const line = lines[lineIndex];
+  if (charIndex <= line.length) {
+    typed.value = line.slice(0, charIndex);
+    timer = setTimeout(() => typeLine(lineIndex, charIndex + 1), 90);
+  } else {
+    timer = setTimeout(
+      () => typeLine((lineIndex + 1) % lines.length, 0),
+      2200
+    );
+  }
+};
+
+onMounted(() => typeLine());
+onBeforeUnmount(() => clearTimeout(timer));
 </script>
