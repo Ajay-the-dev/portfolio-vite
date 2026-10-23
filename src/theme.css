@@ -1,0 +1,107 @@
+/* Design tokens. Bootstrap variables are remapped so cards, borders and
+   muted text follow the theme without per-component classes. */
+:root,
+[data-bs-theme="dark"] {
+  --bg: #120c2b;
+  --surface: #1b1340;
+  --surface-2: #241a55;
+  --line: rgba(160, 145, 255, 0.16);
+  --text: #f2effe;
+  --muted: #9b93c9;
+  --accent: #7b6cf6;
+  --accent-ink: #ffffff;
+  --ring: rgba(123, 108, 246, 0.08);
+}
+
+[data-bs-theme="light"] {
+  --bg: #f6f4ff;
+  --surface: #ffffff;
+  --surface-2: #ece8ff;
+  --line: rgba(60, 40, 170, 0.14);
+  --text: #1a1238;
+  --muted: #625a8c;
+  --accent: #5b4ae6;
+  --accent-ink: #ffffff;
+  --ring: rgba(91, 74, 230, 0.07);
+}
+
+:root,
+[data-bs-theme] {
+  --bs-body-bg: var(--bg);
+  --bs-body-color: var(--text);
+  --bs-border-color: var(--line);
+  --bs-secondary-color: var(--muted);
+  --bs-card-bg: var(--surface);
+  --bs-link-color-rgb: 123, 108, 246;
+
+  --font-display: "VT323", "JetBrains Mono", monospace;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+body {
+  font-family: "Space Grotesk", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.text-muted {
+  color: var(--muted) !important;
+}
+
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: 0.04em;
+  line-height: 0.9;
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Small pixel-square accent, as on the reference cards */
+.pixel-mark {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background: var(--accent);
+  box-shadow: -6px 6px 0 -2px color-mix(in srgb, var(--accent) 55%, transparent);
+}
+
+.pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.45rem 0.45rem 0.45rem 1.3rem;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pill-btn:hover {
+  color: var(--accent-ink);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px -10px var(--accent);
+}
+
+.pill-btn .pill-icon {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--accent-ink);
+  color: var(--accent);
+  transition: transform 0.2s ease;
+}
+
+.pill-btn:hover .pill-icon {
+  transform: rotate(45deg);
+}
