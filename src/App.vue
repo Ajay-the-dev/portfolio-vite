@@ -1,71 +1,70 @@
 <template>
-  <div :class="isDarkMode ? 'bg-dark text-white' : 'bg-white text-dark'">
-    <Navbar />
-    <Home />
-    <BottomNav />
+  <div class="stage">
+    <div class="frame">
+      <Navbar />
+      <div class="frame-body">
+        <Main />
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup>
-import { watch } from "vue";
+import "./theme.css";
 import Navbar from "./components/Navbar.vue";
-import Home from "./components/Main.vue";
-import BottomNav from "./components/bottomNav.vue";
-
-import { displayStore } from "./stores/displayStore.js";
-import { storeToRefs } from "pinia";
-import { useDark } from "@vueuse/core";
-
-const store = displayStore();
-const { isDarkMode } = storeToRefs(store);
-
-// VueUse handles attribute automatically
-const isDark = useDark({
-  selector: "#app",
-  attribute: "color-scheme",
-  valueDark: "dark",
-  valueLight: "light",
-});
-
-// sync pinia → vueuse
-watch(isDarkMode, (val) => {
-  isDark.value = val;
-});
+import Main from "./components/Main.vue";
 </script>
 
 <style>
-#app {
-  /* overflow: hidden; */
+.stage {
+  --pad: 0px;
+  min-height: 100dvh;
+  background: var(--bg);
 }
 
-body {
-  font-family: "Space Grotesk", sans-serif;
-}
-.text-white {
-  color: #ffffff !important;
-}
-
-.text-dark {
-  color: #212529 !important;
-}
-
-.bg-white {
-  background-color: #ffffff !important;
+/* Full-screen black "screen" everything lives in; content scrolls inside it
+   so the corner navigation stays put. */
+.frame {
+  position: relative;
+  height: 100dvh;
+  background: var(--bg);
+  overflow: hidden;
+  animation: power-on 0.7s ease-out both;
 }
 
-.bg-dark {
-  background-color: #212529 !important;
+.frame-body {
+  height: 100%;
+  overflow-y: auto;
+  padding: 4.5rem clamp(1.25rem, 4vw, 3.5rem);
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent-soft) transparent;
 }
 
-[color-scheme="dark"] {
-  background-color: #212529 !important;
-  color: #ffffff !important;
-  height: 100vh;
+/* Brief flicker on load, like a screen powering on */
+@keyframes power-on {
+  0% {
+    opacity: 0;
+    filter: brightness(3);
+  }
+  15% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0.35;
+  }
+  40% {
+    opacity: 1;
+    filter: brightness(1.6);
+  }
+  100% {
+    opacity: 1;
+    filter: none;
+  }
 }
 
-[color-scheme="light"] {
-  background-color: #ffffff !important;
-  color: #212529 !important;
-  height: 100vh;
+@media (prefers-reduced-motion: reduce) {
+  .frame {
+    animation: none;
+  }
 }
 </style>

@@ -73,7 +73,7 @@ const services = ref([
 ]);
 
 onMounted(() => {
-  isNightMode.value = store.getLightMode();
+  isNightMode.value = store.isDarkMode;
 });
 
 watch(isDarkMode, (newVal, oldVal) => {
@@ -87,7 +87,7 @@ watch(isDarkMode, (newVal, oldVal) => {
 
 .heartbeat:hover {
   animation: heartbeat 1.2s ease-in-out infinite;
-  box-shadow: 0 0 1px 1px rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 0 1px var(--accent);
 }
 
 .heartbeat-black:hover {

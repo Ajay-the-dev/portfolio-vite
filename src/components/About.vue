@@ -16,7 +16,6 @@
     <div class="col-md-6 col-12" v-if="router.path === '/about'">
       <div
         class="border card rounded-4 shadow-sm"
-        :class="isNightMode ? 'bg-dark text-white' : ''"
       >
         <div class="card-body">
           <span class="card-title fw-bold mb-1 fs-3">Ajay Chitambaran</span>
@@ -56,10 +55,10 @@
             </li>
           </ul>
           <div class="d-flex gap-2 my-5">
-            <span class="badge bg-dark border small-text">Vue.js</span>
-            <span class="badge bg-dark border small-text">PHP</span>
-            <span class="badge bg-dark border small-text">Full Stack</span>
-            <span class="badge bg-dark border small-text">DevOps</span>
+            <span class="badge about-tag small-text">Vue.js</span>
+            <span class="badge about-tag small-text">PHP</span>
+            <span class="badge about-tag small-text">Full Stack</span>
+            <span class="badge about-tag small-text">DevOps</span>
           </div>
         </div>
       </div>
@@ -115,7 +114,7 @@ const steps = ref([
 // };
 
 onMounted(() => {
-  isNightMode.value = store.getLightMode();
+  isNightMode.value = store.isDarkMode;
 });
 
 watch(isDarkMode, (newVal, oldVal) => {
@@ -124,7 +123,7 @@ watch(isDarkMode, (newVal, oldVal) => {
 </script>
 <style>
 .timeline {
-  border-left: 1px solid hsl(0, 0%, 90%);
+  border-left: 1px solid var(--line);
   position: relative;
   list-style: none;
 }
@@ -140,12 +139,19 @@ watch(isDarkMode, (newVal, oldVal) => {
 }
 
 .timeline .timeline-item:after {
-  background-color: hsl(0, 0%, 90%);
+  background-color: var(--accent);
   left: -38px;
   border-radius: 50%;
   height: 11px;
   width: 11px;
   content: "";
+}
+
+.about-tag {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  font-weight: 500;
 }
 
 .last-space {

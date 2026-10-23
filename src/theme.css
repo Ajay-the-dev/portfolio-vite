@@ -1,0 +1,39 @@
+/* Design tokens. Bootstrap variables are remapped so cards, borders and
+   muted text follow the theme without per-component classes. */
+:root,
+[data-bs-theme="dark"] {
+  --bg: #0c0c0c;
+  --surface: #151515;
+  --line: rgba(255, 255, 255, 0.08);
+  --text: #f2f2f2;
+  --muted: #8a8a8a;
+  --accent: #ff3b3b;
+  --accent-soft: rgba(255, 59, 59, 0.35);
+  --available: #3ddc84;
+
+  --bs-body-bg: var(--bg);
+  --bs-body-color: var(--text);
+  --bs-border-color: var(--line);
+  --bs-secondary-color: var(--muted);
+  --bs-card-bg: var(--surface);
+  --bs-link-color-rgb: 255, 59, 59;
+  --bs-link-hover-color-rgb: 255, 120, 120;
+}
+
+body {
+  font-family: "Space Grotesk", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.text-muted {
+  color: var(--muted) !important;
+}
+
+a {
+  color: var(--accent);
+}
+
+a:hover {
+  color: #ff7878;
+}
