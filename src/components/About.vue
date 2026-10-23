@@ -1,6 +1,6 @@
 <template>
   <div class="row last-space">
-    <div class="col-md-6 col-12" v-if="router.path === '/history'">
+    <div class="col-md-6 col-12" v-if="section === '/history'">
       <div class="mb-3"><span class="fs-2 fw-bold">History</span></div>
       <section>
         <ul class="timeline">
@@ -13,7 +13,7 @@
         </ul>
       </section>
     </div>
-    <div class="col-md-6 col-12" v-if="router.path === '/about'">
+    <div class="col-md-6 col-12" v-if="section === '/about'">
       <div
         class="border card rounded-4 shadow-sm"
         :class="isNightMode ? 'bg-dark text-white' : ''"
@@ -67,7 +67,7 @@
   </div>
 </template>
 <script setup>
-import { ref, onMounted, watch } from "vue";
+import { ref, computed, onMounted, watch } from "vue";
 import { displayStore } from "../stores/displayStore.js";
 import { storeToRefs } from "pinia";
 import { useRoute } from "vue-router";
@@ -75,6 +75,12 @@ import { useRoute } from "vue-router";
 const store = displayStore();
 const { isDarkMode } = storeToRefs(store);
 const router = useRoute();
+
+const props = defineProps({
+  // which part to show; falls back to the current route
+  section: { type: String, default: null },
+});
+const section = computed(() => props.section ?? router.path);
 const isNightMode = ref(true);
 
 const currentStep = ref(0);

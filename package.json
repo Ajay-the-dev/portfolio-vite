@@ -10,10 +10,12 @@
   },
   "dependencies": {
     "@vueuse/core": "^14.1.0",
+    "7.css": "^0.21.1",
     "axios": "^1.13.2",
     "pinia": "^2.1.7",
     "vue": "^3.4.0",
-    "vue-router": "^4.4.0"
+    "vue-router": "^4.4.0",
+    "webamp": "^2.3.1"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.0",

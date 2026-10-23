@@ -80,7 +80,7 @@ const getLocation = () => {
       }, 500);
     },
     (err) => {
-      error.value = err.message;
+      errors.value = err.message;
     }
   );
 };
